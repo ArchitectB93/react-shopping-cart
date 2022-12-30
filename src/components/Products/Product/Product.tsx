@@ -17,7 +17,6 @@ const Product = ({ product }: IProps) => {
     sku,
     title,
     price,
-    installments,
     currencyId,
     currencyFormat,
     isFreeShipping,
@@ -26,19 +25,6 @@ const Product = ({ product }: IProps) => {
   const formattedPrice = formatPrice(price, currencyId);
   let productInstallment;
 
-  if (installments) {
-    const installmentPrice = price / installments;
-
-    productInstallment = (
-      <S.Installment>
-        <span>or {installments} x</span>
-        <b>
-          {currencyFormat}
-          {formatPrice(installmentPrice, currencyId)}
-        </b>
-      </S.Installment>
-    );
-  }
 
   const handleAddProduct = () => {
     addProduct({ ...product, quantity: 1 });
